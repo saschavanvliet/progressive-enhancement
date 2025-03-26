@@ -7,24 +7,87 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
 
-			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
+			body {
+  				width: 100vw;
+ 				height: 100vh;
+  				display: flex;
+  				flex-direction: column;
+  				justify-content: center;
+  				align-items: center;
+  				gap: 52px;
+			}
 
-			/* Hint: Hoe ver ga je qua styling? Vraag jezelf dit altijd af */
+			.switch input {
+  				width: 0;
+				height: 0;
+  				opacity: 0;
+			}
+
+			.switch {
+  				display: block;
+  				position: relative;
+  				width: 3.5em;
+  				height: 2em;
+			}
+
+			.slider {
+				position: absolute;
+				cursor: pointer;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: #f4f4f5;
+				transition: 0.4s;
+				border-radius: 30px;
+				border: 2px solid #ccc;
+			}
+
+			.slider::before {
+				position: absolute;
+				content: "";
+				height: 1.4em;
+				width: 1.4em;
+				border-radius: 20px;
+				left: 0.3em;
+				top: 50%;
+				transform: translateY(-50%);
+				background: linear-gradient(40deg, #FDFC85, #64E4BE 70%);
+				transition: 0.4s;
+			}
+
+			input:checked + .slider {
+				background: #A475F3;
+			}
+
+			input:checked + .slider::before {
+				left: calc(100% - (1.4em +  0.3em));
+				background: #A475F3;
+				box-shadow: inset -3px -2px 5px -2px #303136, inset 25px 0 0 0 #a3dafb;
+				z-index: 0;
+			}
 		</style>
 	</head>
 	<body>
 		<h1>Switch control</h1>
+		<label class="switch">
+			<input type="checkbox">
+			<span class="slider"></span>
 		
 		<!-- Hint: Safari heeft hiervoor iets bedacht, maar is dat al een standaard?
 		     Wat gebeurt er in browsers die dat nog niet ondersteunen? -->
 
-		<details open>
+		<!-- <details open>
 			<summary>Demo video</summary>
 			<video src="assets/switch.mp4" width="119" height="67" controls muted autoplay loop>
 				<a href="assets/switch.mp4">assets/switch.mp4</a>
 			</video>
-		</details>
+		</details> -->
 	</body>
 </html>
