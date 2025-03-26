@@ -9,7 +9,8 @@ Een oefening in het ontwerpen en bouwen van websites volgens het principe van Pr
 
 Bronnen:
 
-https://www.youtube.com/watch?v=nCJtL_-kDGU
+Switch toggle: https://www.youtube.com/watch?v=nCJtL_-kDGU
+Carrousel: https://www.youtube.com/watch?v=3yfswsnD2sw
 
 ## Licentie
 
