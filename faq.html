@@ -5,31 +5,95 @@
 		<meta name="viewport" content="width=device-width">
 		<title>Veelgestelde vragen / Progressive Enhancement / FDND</title>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
+			details {
+				margin-bottom: 1em;
+			}
 
-			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
+			h1 {
+				font-family: 'open sans';
+				color: pink;
+				-webkit-text-stroke: 1px red;
+			}
 
-			/* Hint: Denk aan de states van het component; deze kan open en dicht zijn */
+			p {
+				border: 1px solid black;
+				width: 80vw;
+				border-radius: 0 .5rem .5rem .5rem;
+				margin: 0;
+				font-family: 'open sans';
+				line-height: 1.5em;
+			}
+
+			summary {
+				width: fit-content;
+				border: 1px solid black;
+				padding: 1rem;
+				border-radius: .5rem .5rem;
+				font-family: 'open sans';
+			}
+
+			summary::marker {
+				content: "☁️ ";
+			}
+
+			details[open] summary::marker {
+				content: "🌧️ ";
+			}
+
+			details[open] summary {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+			
+			details[open] p {
+				border: none;
+				padding: 1rem;
+			}
+			
+			details[open]:nth-of-type(1) summary{
+				background: #A475F3;
+				border: none;
+			}
+
+			details[open]:nth-of-type(1) p{
+				background: #A475F3;
+			}
+
+			details[open]:nth-of-type(2) summary{
+				background: #64E4BE;
+				border: none;
+			}
+
+			details[open]:nth-of-type(2) p{
+				background: #64E4BE;
+			}
+
+			details[open]:nth-of-type(3) summary{
+				background: #FDFC85;
+				border: none;
+			}
+
+			details[open]:nth-of-type(3) p{
+				background: #FDFC85;
+			}
 		</style>
 	</head>
 	<body>
 		<h1>Veelgestelde vragen</h1>
-
-
-		<!-- Content (waar nog wat HTML omheen moet 😄):
-		Wat is frontend development?
-		Een frontend developer ontwerpt en bouwt websites in HTML, CSS en JavaScript. Deze frontend talen leer je bij ons, je hebt dus geen voorkennis nodig.
-
-		Moet ik al kunnen coderen?
-		Nee, je hebt helemaal geen voorkennis nodig om te beginnen aan deze opleiding, we kunnen je alles leren! Als je wel al voorkennis hebt, is dat alleen maar goed, dan kunnen we je helpen je skills te verbeteren en te verdiepen in de stof.
-
-		Wat is een Associate Degree?
-		Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5. Een Ad slaat een brug tussen het mbo-4 (niveau 4) en een hbo-bachelor (niveau 6). Met een Associate degree kies je voor een praktijkgerichte hbo-opleiding; je wordt opgeleid voor een beroep dat aansluit bij de praktijk. In dit geval word je opgeleid tot ‘frontend designer/developer' of kortweg ‘frontender’. Frontenders ontwerpen en maken interactieve, toegankelijke toepassingen voor het web. Frontenders werken binnen het gebied van software development, interactieontwerp en digitaal visueel ontwerp.
-		Na afronding van deze tweejarige hbo-opleiding, krijg je een wettelijk erkend hbo-diploma met de graad Associate degree. Met dit Ad-diploma kun je direct aan de slag in het werkveld of doorstromen naar de bacheloropleiding Communication and Multimedia Design (CMD).
-		-->
-
+			<details>
+				<summary>Wat is frontend development?</summary>
+				<p>Een frontend developer ontwerpt en bouwt websites in HTML, CSS en JavaScript. Deze frontend talen leer je bij ons, je hebt dus geen voorkennis nodig.</p>
+			</details>
+			<details>
+				<summary>Moet ik al kunnen coderen?</summary>
+				<p>Nee, je hebt helemaal geen voorkennis nodig om te beginnen aan deze opleiding, we kunnen je alles leren! Als je wel al voorkennis hebt, is dat alleen maar goed, dan kunnen we je helpen je skills te verbeteren en te verdiepen in de stof.</p>
+			</details>
+			<details>
+				<summary>Wat is een Associate Degree?</summary>
+				<p>Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5. Een Ad slaat een brug tussen het mbo-4 (niveau 4) en een hbo-bachelor (niveau 6). Met een Associate degree kies je voor een praktijkgerichte hbo-opleiding; je wordt opgeleid voor een beroep dat aansluit bij de praktijk. In dit geval word je opgeleid tot ‘frontend designer/developer' of kortweg ‘frontender’. Frontenders ontwerpen en maken interactieve, toegankelijke toepassingen voor het web. Frontenders werken binnen het gebied van software development, interactieontwerp en digitaal visueel ontwerp.</p>
+				<p>Na afronding van deze tweejarige hbo-opleiding, krijg je een wettelijk erkend hbo-diploma met de graad Associate degree. Met dit Ad-diploma kun je direct aan de slag in het werkveld of doorstromen naar de bacheloropleiding Communication and Multimedia Design (CMD).</p>
+			</details>
 
 		<!-- Hint: Dit stukje HTML geeft het misschien al weg :) -->
 		<details open>
