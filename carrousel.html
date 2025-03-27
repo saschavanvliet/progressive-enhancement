@@ -7,36 +7,140 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Hint: welk layout model is handig om content naast elkaar te zetten? */
+			@supports ((display: grid) and (scroll-snap-type) and (overscroll-behavior-inline) and (overflow-x){
+				.carousel-container {
+					display: grid; 
+					grid-auto-flow: column;
+					place-items: center; 
+					overflow-x: auto;
+					overscroll-behavior-inline: contain; /* Zorgt ervoor dat iemand niet (zeker op een telefoon) per ongeluk naar een andere pagina gaat tijdens het scrollen*/
+					scroll-snap-type: x mandatory; /* Zorgt voor geforceerd snap-scrolling */
+					scroll-behavior: smooth; /* Soepele animatie */
+				}}
+
+			.carousel-item {
+				flex: 0 0 auto; /* Zorgt ervoor dat de items niet verkleinen */
+    			width: 50em; 
+    			height: 17em;
+    			scroll-snap-align: center; /* Zorgt dat de section in het midden blijft */
+    			display: flex;
+    			justify-content: center;
+    			align-items: center;
+    			text-align: center;
+			}
+
+			.carousel-item:nth-of-type(1) {
+    			background: #A475F3;
+			}
+			.carousel-item:nth-of-type(2) {
+  				background: #FDFC85;
+			}
+			.carousel-item:nth-of-type(3) {
+  				background: #64E4BE;
+			}
+			.carousel-item:nth-of-type(4) {
+				background: #A475F3;
+			}
+			.carousel-item:nth-of-type(5) {
+				background: #FDFC85;
+			}
+			.carousel-item:nth-of-type(6) {
+				background: #64E4BE;
+			}
+
+			p {
+				font-weight: 900;
+				font-style: italic;
+				font-size: 36px;
+				padding-left: 1em;
+				padding-right: 1em;
+			}
+
+			button {
+				position: absolute;
+				top: 50%;
+				width: 8em;
+				transform: translateY(-50%);
+				background: #050542;
+				color: #64E4BE;
+				border: none;
+				border-radius: 0.5rem;
+				padding: 15px 20px;
+				margin-left: 1em;
+				margin-right: 1em;
+				font-size: 12px;
+				cursor: pointer;
+				z-index: 10;
+                transition: background 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+				}
+
+			button:hover {
+    			background: #64E4BE;
+    			color: #050542;
+    			box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); 
+			}
+
+			#vorigeBtn { 
+				left: 10px;
+				display: hidden;
+			}
+			#volgendeBtn { 
+				right: 10px; 
+				display: hidden;
+			}
 		</style>
+
 		<script type="module">
-			/* Schrijf hier eventueel je client-side JavaScript */
+			document.addEventListener("DOMContentLoaded", function () {
+			// Stap 1: aanmaken variabelen
+    		const carousel = document.querySelector(".carousel-container"); // Variabele van hele carousel
+    		const sections = document.querySelectorAll(".carousel-item"); // Variabele van alle sections
+    		const vorigeBtn = document.getElementById("vorigeBtn"); // Variabele van button 1
+    		const volgendeBtn = document.getElementById("volgendeBtn"); // Variabele van button 2
+
+    		let currentIndex = 0; // De eerste section is nul
+
+    		function scrollToSection(index) { // scrollTo-functie (https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo)
+        	sections[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" }); // scrollIntoView zodat de sections in het midden staan bij elke scroll.
+    		}
+
+			vorigeBtn.removeAttribute("hidden");
+			volgendeBtn.removeAttribute("hidden");
+
+    		vorigeBtn.addEventListener("click", () => {
+        		if (currentIndex > 0) { // Groter dan nul, dan gaan schuift de volgende section naar links als je op de button klikt. Bij de eerste section kan je niet naar links want deze IS nul.
+            	currentIndex--; 
+            	scrollToSection(currentIndex);
+        		}
+    		});
+
+    		volgendeBtn.addEventListener("click", () => {
+        		if (currentIndex < sections.length - 1) { // Index begint bij nul. Daarom moet je -1 doen voor de zesde section, want de getallen zijn: 0, 1, 2, 3, 4, 5.
+            	currentIndex++; // Als de currentIndex bijvoorbeeld nul is dan wordt de volgende section geladen met ++. 
+            	scrollToSection(currentIndex);
+        		}
+    		});
+		});
 		</script>
 	</head>
+
 	<body>
-		<h1>Carrousel</h1>
+		<button id="vorigeBtn" hidden>Vorige</button>
+		<main class="carousel-container">
+		  <section class="carousel-item"><p>“Websites leren bouwen, én praktijkervaring opdoen?”</p></section>
+		  <section class="carousel-item"><p>“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”</p></section>
+		  <section class="carousel-item"><p>“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”</p></section>
+		  <section class="carousel-item"><p>“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”</p></section>
+		  <section class="carousel-item"><p>“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”</p></section>
+		  <section class="carousel-item"><p>“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”</p></section>
+		</main>
+		<button id="volgendeBtn" hidden>Volgende</button>
 
-		<!-- Content: 
-		
-		“Websites leren bouwen, én praktijkervaring opdoen?”
-		
-		“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
-		
-		“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
-		
-		“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
-		
-		“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
-		
-		“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
-
-		-->
-
-		<details open>
+		<!-- <details open>
 			<summary>Demo video</summary>
 			<video src="assets/carrousel.mp4" width="1298" height="469" controls muted loop>
 				<a href="assets/carrousel.mp4">assets/carrousel.mp4</a>
 			</video>
-		</details>
+		</details> -->
 	</body>
 </html>
