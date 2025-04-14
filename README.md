@@ -9,10 +9,6 @@ Een oefening in het ontwerpen en bouwen van websites volgens het principe van Pr
 
 ## Onderdelen notes
 
-Switch:
-
-Een belangrijk onderdeel van de UI is een interactieve toggle-switch, die ik heb gebouwd met een <input type="range"> en gestyled met CSS-pseudo-elementen zoals ::thumb en ::track. Dankzij @supports detecteert de website of de browser ::thumb ondersteunt en past de styling zich hierop aan. Oudere browsers zonder deze ondersteuning vallen terug op een alternatief met @supports, waardoor de functionaliteit behouden blijft.
-
 ## Bronnen:
 
 Switch toggle: https://www.youtube.com/watch?v=nCJtL_-kDGU
